@@ -2,34 +2,35 @@
 """
 Created on Sat May  6 17:23:45 2017
 
-@author: Thomas Pilnik
+@author: Alfredo Acerbi, Ariel Iglicky, Tiago Mingossi, Thomas Pilnik
 """
 
 import pygame
-import tkinter as tk
 from pygame.locals import *
 import sys
+import random 
 
 
-		
-		
+class Button:
+	def __init__(self, color, bright_color, pos_x, pos_y):
+		self.x = pos_x
+		self.y = pos_y
+		self.image = pygame.image.load(color).convert_alpha()
+		self.image = pygame.transform.scale(self.image, (300, 300))
+		self.image_bright = pygame.image.load(bright_color).convert_alpha()
+		self.image_bright = pygame.transform.scale(self.image, (300, 300))
+		self.bright = False
 
-def tela_inicial():
-	pygame.init()
-	tela = pygame.display.set_mode((234,234))
-	pygame.display.set_caption("Jogo Genius")
-	fundo = pygame.image.load("imagens/genius.png").convert()
-	#botao = pygame.Button(tela)
-	#botao.configure(text="Iniciar")
-	#botao.grid()
-	
-	while True:
-		for evento in pygame.event.get():
-			if evento.type == QUIT:
-				pygame.quit()
-				sys.exit()
-			tela.blit(fundo,(0,0))
-			#botao.blit(fundo,(234/2,234/2))
+	def show(self, window):
+		if self.bright:
+			window.blit(self.image_bright, (self.x, self.y))
+		else:
+			window.blit(self.image, (self.x, self.y))
 		pygame.display.update()
-		
-print(tela_inicial())
+
+	def blink(self, window):
+		self.bright = True
+		self.show(window)
+		pygame.time.wait(800)
+		self.bright = False
+		self.show(window)
