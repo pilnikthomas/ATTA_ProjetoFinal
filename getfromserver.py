@@ -3,10 +3,14 @@ import random
 
 #nome = input("seu nome: ")
 
-#req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/name/' + nome)
-#with urllib.request.urlopen(req) as f:
-#    print(f.read().decode('utf-8'))
-
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/')
+urllib.request.urlopen(req)
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/novo')
+urllib.request.urlopen(req)
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/mostra')
+with urllib.request.urlopen(req) as f:
+    print(f.read().decode('utf-8'))
+'''
 x=0
 erro=0
 cores=["vermelho","amarelo","verde","azul"]
@@ -45,3 +49,4 @@ while erro==0:
 #req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/name/' + "".join(sequencia))
 #with urllib.request.urlopen(req) as f:
 #	print(f.read().decode('utf-8'))
+'''
