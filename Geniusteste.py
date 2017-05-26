@@ -92,18 +92,24 @@ def tela_inicial():
 							if botoes_mouse[0]:
 								tela.blit(botao8,(300,300))
 								print("verde")
+						sequencia = {"verde", "vermelho", "azul"}
+						for botao in sequencia:
+						
+							if botao=="verde":
+								tela.blit(botao8,(300,300))
+							if botao=="vermelho":
+								tela.blit(botao6,(300,0))
+							if botao=="azul":
+								tela.blit(botao5,(0,0))
+							if botao=="amarelo":
+								tela.blit(botao7,(0,300))
+								
 							
+						
 						pygame.display.update()
 						
 				print(tela_jogo())
 				
-				
-				def pisca(nome):
-					if nome=="verde":
-						tela.blit(botao8,(300,300))
-						
-			#a=input("escolha um botao")
-			#pisca(a)
 		if x>500 and x<600 and y>516 and y<586:
 			print("ranking")
 			if botoes_mouse[0]:
