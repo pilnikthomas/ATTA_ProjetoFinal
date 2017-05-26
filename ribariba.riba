@@ -1,0 +1,17 @@
+import pygame
+from pygame.locals import *
+import sys
+import urllib.request
+import random
+
+#nome = input("seu nome: ")
+
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/')
+urllib.request.urlopen(req)
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/novo')
+urllib.request.urlopen(req)
+req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/mostra')
+with urllib.request.urlopen(req) as f:
+    xabra=f.read().decode('utf-8')
+xabra=xabra.split(',')
+print(xabra)
