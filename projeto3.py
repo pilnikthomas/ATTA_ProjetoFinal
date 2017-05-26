@@ -26,7 +26,7 @@ def tela_inicial():
 				sys.exit()
 			tela.blit(fundo,(0,0))
 			tela.blit(botao1,(250,242))
-			tela.blit(botao2,(500,534))
+			tela.blit(botao2,(500,514))
 			
 		pos_mouse= pygame.mouse.get_pos()
 		x= pos_mouse[0]
@@ -34,6 +34,16 @@ def tela_inicial():
 		
 		if x>0 and x<300 and y>0 and y<292:
 			print("azul")
+			
+		if x>301 and x<600 and y>0 and y<292:
+			print("vermelho")
+			
+		if x>0 and x<300 and y>292 and y<584:
+			print("amarelo")
+			
+		if x>301 and x<600 and y>292 and y<584:
+			print("verde")
+		
 			
 		print(pos_mouse)
 		
@@ -43,7 +53,7 @@ def tela_inicial():
 		if botoes_mouse1[0]:
 			print("iniciar")
 		
-		if x>500 and x<600 and y>534 and y<584:
+		if x>500 and x<600 and y>514 and y<584:
 			print("ranking")
 		botoes_mouse2= pygame.mouse.get_pressed()
 		if botoes_mouse2[0]:
