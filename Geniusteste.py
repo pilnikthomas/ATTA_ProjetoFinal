@@ -92,17 +92,42 @@ def tela_inicial():
 							if botoes_mouse[0]:
 								tela.blit(botao8,(300,300))
 								print("verde")
-						sequencia = {"verde", "vermelho", "azul"}
+							
+						sequencia = ["verde", "vermelho", "azul","amarelo"]
+						tempo = pygame.time.get_ticks()
 						for botao in sequencia:
 						
 							if botao=="verde":
 								tela.blit(botao8,(300,300))
+								
+								while ((pygame.time.get_ticks()-tempo))<300:
+									pass
+									tela.blit(botao4,(300,300))
+									pygame.display.update()
+								
 							if botao=="vermelho":
 								tela.blit(botao6,(300,0))
+								
+								while ((pygame.time.get_ticks()-tempo))<300:
+									pass
+									tela.blit(botao2,(300,0))
+									pygame.display.update()
+									
 							if botao=="azul":
 								tela.blit(botao5,(0,0))
+								
+								while ((pygame.time.get_ticks()-tempo))<300:
+									pass
+									tela.blit(botao1,(0,0))
+									pygame.display.update()
+									
 							if botao=="amarelo":
 								tela.blit(botao7,(0,300))
+								
+								while ((pygame.time.get_ticks()-tempo))<300:
+									pass
+									tela.blit(botao3,(0,300))
+									pygame.display.update()
 								
 							
 						
