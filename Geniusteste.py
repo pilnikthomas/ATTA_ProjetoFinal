@@ -2,9 +2,7 @@ import pygame
 from pygame.locals import *
 import sys
 import random 
-
-
-	
+import time
 	
 def tela_inicial():
 	pygame.init()
@@ -27,16 +25,16 @@ def tela_inicial():
 		y= pos_mouse[1]
 		
 		if x>0 and x<300 and y>0 and y<293:
-			print("azul")
+			#print("azul")
 			
 		if x>301 and x<600 and y>0 and y<292:
-			print("vermelho")
+			#print("vermelho")
 			
 		if x>0 and x<300 and y>293 and y<586:
-			print("amarelo")
+			#print("amarelo")
 			
 		if x>301 and x<600 and y>294 and y<586:
-			print("verde")
+			#print("verde")
 		
 			
 		print(pos_mouse)
@@ -45,6 +43,116 @@ def tela_inicial():
 			print("botao")
 			if botoes_mouse[0]:
 				def tela_jogo():
+					pygame.init()
+					tela = pygame.display.set_mode((600,586))
+					pygame.display.set_caption("Genius Game")
+					botao1 = pygame.image.load("botao_azul.jpg").convert()
+					botao2 = pygame.image.load("botao_vermelho.jpg").convert()
+					botao3 = pygame.image.load("botao_amarelo.jpg").convert()
+					botao4 = pygame.image.load("botao_verde.jpg").convert()
+					botao5 = pygame.image.load("botao_azul_claro.jpg").convert()
+					botao6 = pygame.image.load("botao_vermelho_claro.jpg").convert()
+					botao7 = pygame.image.load("botao_amarelo_claro.jpg").convert()
+					botao8 = pygame.image.load("botao_verde_claro.jpg").convert()
+					'''
+					botoes_escuros = {botao1,botao2,botao3,botao4}
+					botoes_claros = {botao5,botao6,botao7,botao8}
+					'''
+					while True:
+						for evento in pygame.event.get():
+							if evento.type == QUIT:
+								pygame.quit()
+								sys.exit()
+							tela.blit(botao1,(0,0))
+							tela.blit(botao2,(300,0))
+							tela.blit(botao3,(0,300))
+							tela.blit(botao4,(300,300))
+						
+						pos_mouse= pygame.mouse.get_pos()
+						x= pos_mouse[0]
+						y= pos_mouse[1]
+						
+						botoes_mouse= pygame.mouse.get_pressed()
+						
+						if x>0 and x<300 and y>0 and y<293:
+							#print("azul")
+							if botoes_mouse[0]:
+								tela.blit(botao5,(0,0))
+								print("azul")
+						if x>301 and x<600 and y>0 and y<293:
+							#print("vermelho")
+							if botoes_mouse[0]:
+								tela.blit(botao6,(300,0))
+								print("vermelho")
+						if x>0 and x<300 and y>294 and y<586:
+							#print("amarelo")
+							if botoes_mouse[0]:
+								tela.blit(botao7,(0,300))
+								print("amarelo")
+						if x>301 and x<600 and y>294 and y<586:
+							#print("verde")	
+							if botoes_mouse[0]:
+								tela.blit(botao8,(300,300))
+								print("verde")
+						'''
+						def random_cor():
+							return random.choice(botoes_claros.keys())
+						sequencia = []
+						'''
+						
+						sequencia = ["verde", "vermelho", "azul","amarelo"]
+						#sequencia = ["verde", "vermelho"]
+						sequenciajogo = []
+						for i in range(100):
+							sequenciajogo.append(random.choice(sequencia))
+						print(sequenciajogo)
+			
+						for botao in sequencia:
+						
+							if botao=="verde":
+								tela.blit(botao8,(300,300))
+								pygame.display.update()
+								tempo = pygame.time.get_ticks()
+								while ((pygame.time.get_ticks()-tempo))<1000:
+									
+									tela.blit(botao4,(300,300))
+								pygame.display.update()
+								
+							if botao=="vermelho":
+								tela.blit(botao6,(300,0))
+								pygame.display.update()
+								tempo = pygame.time.get_ticks()
+								while ((pygame.time.get_ticks()-tempo))<1000:
+									
+									tela.blit(botao2,(300,0))
+								pygame.display.update()
+									
+							if botao=="azul":
+								tela.blit(botao5,(0,0))
+								pygame.display.update()
+								tempo = pygame.time.get_ticks()
+								while ((pygame.time.get_ticks()-tempo))<1000:
+									
+									tela.blit(botao1,(0,0))
+								pygame.display.update()
+									
+							if botao=="amarelo":
+								tela.blit(botao7,(0,300))
+								pygame.display.update()
+								tempo = pygame.time.get_ticks()
+								while ((pygame.time.get_ticks()-tempo))<1000:
+									
+									tela.blit(botao3,(0,300))
+								pygame.display.update()
+									
+						pygame.display.update()
+						
+				print(tela_jogo())
+		
+		if x>0 and x<100 and y>516 and y<586:
+			print("online")
+			if botoes_mouse[0]:
+				def tela_online():
 					pygame.init()
 					tela = pygame.display.set_mode((600,586))
 					pygame.display.set_caption("Genius Game")
@@ -72,6 +180,7 @@ def tela_inicial():
 						y= pos_mouse[1]
 						
 						botoes_mouse= pygame.mouse.get_pressed()
+						
 						if x>0 and x<300 and y>0 and y<293:
 							#print("azul")
 							if botoes_mouse[0]:
@@ -92,49 +201,12 @@ def tela_inicial():
 							if botoes_mouse[0]:
 								tela.blit(botao8,(300,300))
 								print("verde")
-							
-						sequencia = ["verde", "vermelho", "azul","amarelo"]
-						tempo = pygame.time.get_ticks()
-						for botao in sequencia:
-						
-							if botao=="verde":
-								tela.blit(botao8,(300,300))
 								
-								while ((pygame.time.get_ticks()-tempo))<300:
-									pass
-									tela.blit(botao4,(300,300))
-									pygame.display.update()
-								
-							if botao=="vermelho":
-								tela.blit(botao6,(300,0))
-								
-								while ((pygame.time.get_ticks()-tempo))<300:
-									pass
-									tela.blit(botao2,(300,0))
-									pygame.display.update()
-									
-							if botao=="azul":
-								tela.blit(botao5,(0,0))
-								
-								while ((pygame.time.get_ticks()-tempo))<300:
-									pass
-									tela.blit(botao1,(0,0))
-									pygame.display.update()
-									
-							if botao=="amarelo":
-								tela.blit(botao7,(0,300))
-								
-								while ((pygame.time.get_ticks()-tempo))<300:
-									pass
-									tela.blit(botao3,(0,300))
-									pygame.display.update()
-								
-							
-						
 						pygame.display.update()
 						
-				print(tela_jogo())
-				
+				print(tela_online())
+
+		
 		if x>500 and x<600 and y>516 and y<586:
 			print("ranking")
 			if botoes_mouse[0]:
