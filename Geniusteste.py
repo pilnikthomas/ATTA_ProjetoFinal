@@ -25,16 +25,16 @@ def tela_inicial():
 		y= pos_mouse[1]
 		
 		if x>0 and x<300 and y>0 and y<293:
-			#print("azul")
+			print("azul")
 			
 		if x>301 and x<600 and y>0 and y<292:
-			#print("vermelho")
+			print("vermelho")
 			
 		if x>0 and x<300 and y>293 and y<586:
-			#print("amarelo")
+			print("amarelo")
 			
 		if x>301 and x<600 and y>294 and y<586:
-			#print("verde")
+			print("verde")
 		
 			
 		print(pos_mouse)
@@ -54,10 +54,14 @@ def tela_inicial():
 					botao6 = pygame.image.load("botao_vermelho_claro.jpg").convert()
 					botao7 = pygame.image.load("botao_amarelo_claro.jpg").convert()
 					botao8 = pygame.image.load("botao_verde_claro.jpg").convert()
-					'''
-					botoes_escuros = {botao1,botao2,botao3,botao4}
-					botoes_claros = {botao5,botao6,botao7,botao8}
-					'''
+								
+					sequencia = ["verde", "vermelho", "azul","amarelo"]
+					sequencia_jogo = []
+					sequencia_jogador=[]
+					for i in range(100):
+						sequencia_jogo.append(random.choice(sequencia))
+					print(sequencia_jogo)
+						
 					while True:
 						for evento in pygame.event.get():
 							if evento.type == QUIT:
@@ -94,20 +98,9 @@ def tela_inicial():
 							if botoes_mouse[0]:
 								tela.blit(botao8,(300,300))
 								print("verde")
-						'''
-						def random_cor():
-							return random.choice(botoes_claros.keys())
-						sequencia = []
-						'''
 						
-						sequencia = ["verde", "vermelho", "azul","amarelo"]
-						#sequencia = ["verde", "vermelho"]
-						sequenciajogo = []
-						for i in range(100):
-							sequenciajogo.append(random.choice(sequencia))
-						print(sequenciajogo)
-			
-						for botao in sequencia:
+						
+						for botao in sequencia_jogo:
 						
 							if botao=="verde":
 								tela.blit(botao8,(300,300))
