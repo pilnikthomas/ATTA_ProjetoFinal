@@ -54,13 +54,31 @@ def tela_inicial():
 					botao6 = pygame.image.load("botao_vermelho_claro.jpg").convert()
 					botao7 = pygame.image.load("botao_amarelo_claro.jpg").convert()
 					botao8 = pygame.image.load("botao_verde_claro.jpg").convert()
-								
+					
+
+				
+					'''req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/')
+					urllib.request.urlopen(req)
+					req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/novo')
+					urllib.request.urlopen(req)
+					req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/mostra')
+					with urllib.request.urlopen(req) as f:
+						xabra=f.read().decode('utf-8')
+					xabra=xabra.split(',')
+					print(xabra)
+				'''
+				
+				
+				
 					sequencia = ["verde", "vermelho", "azul","amarelo"]
 					sequencia_jogo = []
 					sequencia_jogador=[]
 					for i in range(100):
 						sequencia_jogo.append(random.choice(sequencia))
 					print(sequencia_jogo)
+					posicao=1
+				
+					
 						
 					while True:
 						for evento in pygame.event.get():
@@ -72,7 +90,7 @@ def tela_inicial():
 							tela.blit(botao3,(0,300))
 							tela.blit(botao4,(300,300))
 						
-						pos_mouse= pygame.mouse.get_pos()
+						'''pos_mouse= pygame.mouse.get_pos()
 						x= pos_mouse[0]
 						y= pos_mouse[1]
 						
@@ -97,10 +115,11 @@ def tela_inicial():
 							#print("verde")	
 							if botoes_mouse[0]:
 								tela.blit(botao8,(300,300))
-								print("verde")
+								print("verde")'''
 						
 						
-						for botao in sequencia_jogo:
+						for i in range(posicao):
+							botao=sequencia_jogo[i]
 						
 							if botao=="verde":
 								tela.blit(botao8,(300,300))
@@ -137,8 +156,37 @@ def tela_inicial():
 									
 									tela.blit(botao3,(0,300))
 								pygame.display.update()
-									
-						pygame.display.update()
+								
+						#aguarda o usaário clicar a sequecia
+						contador = 0
+						while contador <=posicao:
+							pos_mouse= pygame.mouse.get_pos()
+							x= pos_mouse[0]
+							y= pos_mouse[1]
+							
+							if x>0 and x<300 and y>0 and y<293:
+								#print("azul")
+								botaoSobre = "azul"
+							if x>301 and x<600 and y>0 and y<292:
+								#print("vermelho")
+								botaoSobre = "vermelho"
+							if x>0 and x<300 and y>293 and y<586:
+								#print("amarelo")
+								botaoSobre = "amarelo"
+							if x>301 and x<600 and y>294 and y<586:
+								#print("verde")
+								botaoSobre = "verde"
+								
+							
+							botoes_mouse= pygame.mouse.get_pressed()
+							print(botoes_mouse)
+							if botoes_mouse[0]==1:
+								print("clicou")
+								contador+=1
+								if sequencia_jogo[contador] == botaoSobre:
+									print("acertou")
+								else:
+									print("errou")
 						
 				print(tela_jogo())
 		
