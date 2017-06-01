@@ -1,7 +1,7 @@
 import sys
 import pygame as pg
 from pygame.locals import *
-
+import time
 
 
 pg.init()
@@ -15,7 +15,6 @@ rect = pg.Rect(25, 350, 250, 100)
 pg.draw.rect(tela, pg.Color("blue"), rect, 10)
 pg.display.flip()
 
-
 #rect multiplayer
 rect = pg.Rect(325,350, 250, 100)
 
@@ -27,6 +26,21 @@ rect = pg.Rect(225,480, 150, 75)
 
 pg.draw.rect(tela, pg.Color("green"), rect, 10)
 pg.display.flip()
+	
+	
+pos_mouse = pygame.mouse.get_pos()
+x = pos_mouse[0]
+y = pos_mouse[1]
+		
+if x>25 and x<275 and y>350 and y<450:
+print("Single Player")
+			
+if x>325 and x<575 and y>350 and y<450:
+print("Multiplayer")
+			
+if x>225 and x<375 and y>480 and y<555:
+print("Credits")
+			
 
 '''
 
