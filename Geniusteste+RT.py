@@ -3,6 +3,7 @@ from pygame.locals import *
 import sys
 import random 
 import time
+import urllib.request
 	
 def tela_inicial():
 	pygame.init()
@@ -68,16 +69,23 @@ def tela_inicial():
 					#RT inicio
 					tela.blit(botao1,(0,0))
 					tela.blit(botao2,(300,0))
-					tela.blit(botao3,(0,300))
-					tela.blit(botao4,(300,300))
+					tela.blit(botao4,(0,300))
+					tela.blit(botao3,(300,300))
 					tela.blit(botaoON,(275,275))
 				    #RT fim
 					
 					sequencia = ["verde", "vermelho", "azul","amarelo"]
 					sequencia_jogo = []
 					sequencia_jogador=[]
-					for i in range(100):
-						sequencia_jogo.append(random.choice(sequencia))
+					req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/')
+					urllib.request.urlopen(req)
+					req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/novo')
+					urllib.request.urlopen(req)
+					req = urllib.request.Request(url='http://iglicky.pythonanywhere.com/mostra')
+					with urllib.request.urlopen(req) as f:
+						sequencia_jogo=f.read().decode('utf-8')
+					sequencia_jogo=sequencia_jogo.split(',')
+					sequencia_jogo[-1]="brunoartc"
 					print(sequencia_jogo)
 					posicao=0
 					while True:
@@ -95,7 +103,7 @@ def tela_inicial():
 						for i in range(posicao):
 							botao=sequencia_jogo[i]
 						
-							if botao=="verde":
+							if botao=="amarelo":
 								tela.blit(botao8,(300,300))
 								pygame.display.update()
 								tempo = pygame.time.get_ticks()
@@ -122,7 +130,7 @@ def tela_inicial():
 								pygame.display.update()
 								pygame.time.delay(1000)
 									
-							if botao=="amarelo":
+							if botao=="verde":
 								tela.blit(botao7,(0,300))
 								pygame.display.update()
 								tempo = pygame.time.get_ticks()
@@ -150,11 +158,11 @@ def tela_inicial():
 										#print("vermelho")
 										botaoSobre = "vermelho"
 									if x>0 and x<300 and y>300 and y<600:
-										#print("amarelo")
-										botaoSobre = "amarelo"
-									if x>301 and x<600 and y>294 and y<600:
 										#print("verde")
 										botaoSobre = "verde"
+									if x>301 and x<600 and y>294 and y<600:
+										#print("amarelo")
+										botaoSobre = "amarelo"
 									
 									if sequencia_jogo[contador] == botaoSobre:
 										print("acertou"+botaoSobre)
@@ -184,8 +192,8 @@ def tela_inicial():
 								sys.exit()
 						tela.blit(botao1,(0,0))
 						tela.blit(botao2,(300,0))
-						tela.blit(botao3,(0,300))
-						tela.blit(botao4,(300,300))
+						tela.blit(botao4,(0,300))
+						tela.blit(botao3,(300,300))
 						pygame.display.update()
 						
 						pos_mouse= pygame.mouse.get_pos()
@@ -205,15 +213,15 @@ def tela_inicial():
 								tela.blit(botao6,(300,0))
 								print("vermelho")
 						if x>0 and x<300 and y>294 and y<586:
-							#print("amarelo")
+							#print("verde")
 							if botoes_mouse[0]:
-								tela.blit(botao7,(0,300))
-								print("amarelo")
-						if x>301 and x<600 and y>294 and y<586:
-							#print("verde")	
-							if botoes_mouse[0]:
-								tela.blit(botao8,(300,300))
+								tela.blit(botao8,(0,300))
 								print("verde")
+						if x>301 and x<600 and y>294 and y<586:
+							#print("amarelo")	
+							if botoes_mouse[0]:
+								tela.blit(botao7,(300,300))
+								print("amarelo")
 								
 						pygame.display.update()
 						
