@@ -2,60 +2,58 @@ import pygame as pg
 
 pg.init()
 
-text_list = '''I'm Henry the eighth, I am
-Henry the eighth, I am, I am
-I got married to the widow next door
-She's been married seven times before
+Texto = '''"CRÉDITOS
 
-And every one was an Henry (Henry)
-She wouldn't have a Willy or a Sam (No Sam)
-I'm her eighth old man, I'm Henry
-Henry the eighth I am
+Integrantes:
 
-Second verse, same as the first
+Alfredo Acerbi
+Ariel R. Iglicky
+Thomas Pilnik
+Tiago Mingossi
 
-I'm Henry the eighth, I am
-Henry the eighth, I am, I am
-I got married to the widow next door
-She's been married seven times before
+Professores:
 
-And every one was an Henry (Henry)
-She wouldn't have a Willy or a Sam (No Sam)
-I'm her eighth old man, I'm Henry
-Henry the eighth I am
+Romero Tori
+Daniel Carvalho
 
-I'm Henry the eighth, I am
-Henry the eighth, I am, I am
-I got married to the widow next door
-She's been married seven times before
+Amigos:
 
-And every one was an Henry (Henry)
-She wouldn't have a Willy or a Sam (No Sam)
-I'm her eighth old man, I'm Henry
-Henry the eighth I am
+Toranja Monster
 
-H-E-N-R-Y
-Henry (Henry)
-Henry (Henry)
-Henry the eighth I am, I am
-Henry the eighth I am
-Yeah!
+Uma inspiração...
+"Minha terra tem palmeiras,
+Onde canta o sabiá;
+As aves, que aqui gorjeiam,
+Não gorjeiam como lá.
+
+Nosso céu tem mais estrelas,
+Nossas várzeas têm mais flores,
+Nossos bosques têm mais vida,
+Nossa vida mais amores."
+
+Obrigado, Python
+"Is this a bug or a feature?
+Yes"
+"O que uma laranja disse pra um tomate?
+Python"
+
+pygame.quit
 '''.split('\n')
 
 class Credits:
     def __init__(self, screen_rect, lst):
         self.srect = screen_rect
         self.lst = lst
-        self.size = 16
+        self.size = 13
         self.color = (255,0,0)
         self.buff_centery = self.srect.height/2 + 5
         self.buff_lines = 50
         self.timer = 0.0
-        self.delay = 30
+        self.delay = 15
         self.make_surfaces()
 
 
-    def make_text(self,message):
+    def Conf_texto(self,message):
         font = pg.font.SysFont('Arial', self.size)
         text = font.render(message,True,self.color)
         rect = text.get_rect(center = (self.srect.centerx, self.srect.centery + self.buff_centery) )
@@ -64,7 +62,7 @@ class Credits:
     def make_surfaces(self):
         self.text = []
         for i, line in enumerate(self.lst):
-            l = self.make_text(line)
+            l = self.Conf_texto(line)
             l[1].y += i*self.buff_lines
             self.text.append(l)
 
@@ -82,7 +80,7 @@ screen = pg.display.set_mode((600,600))
 screen_rect = screen.get_rect()
 clock = pg.time.Clock()
 done = False
-cred = Credits(screen_rect, text_list)
+cred = Credits(screen_rect, Texto)
 
 while not done:
     for event in pg.event.get(): 
@@ -92,4 +90,4 @@ while not done:
     cred.update()
     cred.render(screen)
     pg.display.update()
-    clock.tick(1000)
+    clock.tick(200)
